@@ -84,29 +84,12 @@ public class mAire extends JFrame{
 	
 	private void colocarElementos() {
 		
-		etiqueta = new JLabel("Login");
-		etiqueta.setBounds((int) ((anchuraM/2)+ anchuraM/3.7),(int) (alturaM/3.2),300,40);
-		etiqueta.setFont(new Font("Arial", 1, 20));
-		etiqueta.setForeground(Color.WHITE);
-		panel.add(etiqueta);
-		
 		imagen = new JLabel();
 		ImageIcon imgTierra = new ImageIcon(getClass().getResource("/Imagenes/Aire.png"));
 		imagen.setIcon(new ImageIcon(imgTierra.getImage().getScaledInstance(anchuraM/3,alturaM/9,Image.SCALE_SMOOTH)));
 		panel.add(imagen);
 		imagen.setBounds((int) ((anchuraM/2)+ anchuraM/7.3),alturaM/9,anchuraM/3,alturaM/9);
 		
-		tb1 = new JTextField("Usuario");
-		panel.add(tb1);
-		tb1.setBounds((int) ((anchuraM/2)+ anchuraM/4.7),alturaM/3, 160, 40);
-		
-		tb2 = new JTextField("Password");
-		panel.add(tb2);
-		tb2.setBounds((int) ((anchuraM/2)+ anchuraM/4.7),(int) (alturaM/2.8), 160, 40);
-		
-		bt1 = new JButton("IR");
-		panel.add(bt1);
-		bt1.setBounds((int) ((anchuraM/2)+ anchuraM/4.45),(int) (alturaM/2.6), 140, 40);
 		bt2 = new JButton("ATRAS");
 		panel.add(bt2);
 		bt2.setBounds((int) ((anchuraM/2)+ anchuraM/4.45),alturaM/2, 140, 40);

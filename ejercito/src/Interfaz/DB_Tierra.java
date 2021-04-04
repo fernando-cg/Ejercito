@@ -57,7 +57,7 @@ public class DB_Tierra extends JFrame{
 	}
 	private String AnnadirDatosTierraBase() {
 		//Objetos Creados
-		Tierra tier1=new Tierra("Cuartel General del  Ejército de Tierra","Madrid",80000,132,1,1,1767);
+		Tierra tier1=new Tierra("Cuartel General del  Ejercito de Tierra","Madrid",80000,132,1,1,1767);
 		return tier1.toString();
 		
 	}
@@ -88,7 +88,7 @@ public class DB_Tierra extends JFrame{
 		this.add(panel);
 	}
 	private void colocarEtiqueta() {
-		etiqueta = new JLabel("Datos del Ejército de Tierra");
+		etiqueta = new JLabel("Datos del Ejercito de Tierra");
 		etiqueta.setBounds((int) ((anchuraM/2)+ anchuraM/6),10,300,40);
 		etiqueta.setFont(new Font("Arial", 1, 20));
 		etiqueta.setForeground(Color.WHITE);
@@ -97,7 +97,7 @@ public class DB_Tierra extends JFrame{
 	}
 private void colocarElementos() {
 	//Objetos Creados del cuartel
-	Tierra tier1=new Tierra("Cuartel General del  Ejército de Tierra","Madrid",80000,132,1,1,1767);
+	Tierra tier1=new Tierra("Cuartel General del  Ejercito de Tierra","Madrid",80000,132,1,1,1767);
 			tier1.getFechaFundacion();
 			tier1.getNombreBase();
 			tier1.getNumTropas();
@@ -109,7 +109,7 @@ private void colocarElementos() {
 	//Objetos creados de los vehiculos
 		
 		
-		etiqueta= new JLabel("Información de los cuarteles:");
+		etiqueta= new JLabel("Informacon de los cuarteles:");
 		etiqueta.setBounds((int) (anchuraM/30),(int) (alturaM/3.5),300,40);
 		etiqueta.setFont(new Font("Arial", 1, 20));
 		etiqueta.setForeground(Color.WHITE);
@@ -121,7 +121,7 @@ private void colocarElementos() {
 		etiqueta.setForeground(Color.WHITE);
 		panel.add(etiqueta);
 		
-		etiqueta= new JLabel("Información de las Tropas:");
+		etiqueta= new JLabel("Informacion de las Tropas:");
 		etiqueta.setBounds((int) (anchuraM/30),(int) (alturaM/3.1),300,40);
 		etiqueta.setFont(new Font("Arial", 1, 20));
 		etiqueta.setForeground(Color.WHITE);
@@ -133,7 +133,7 @@ private void colocarElementos() {
 		etiqueta.setForeground(Color.WHITE);
 		panel.add(etiqueta);
 		
-		etiqueta= new JLabel("Información de los Vehículos:");
+		etiqueta= new JLabel("Informacion de los Vehiculos:");
 		etiqueta.setBounds((int) (anchuraM/30),(int) (alturaM/2.7),300,40);
 		etiqueta.setFont(new Font("Arial", 1, 20));
 		etiqueta.setForeground(Color.WHITE);
@@ -163,7 +163,7 @@ private void colocarElementos() {
 				
 				mTierra m1 = new mTierra();		
 				m1.setVisible(true);
-				m1.setTitle("Ejercito de España");
+				m1.setTitle("Ejercito de Espania");
 				m1.setResizable(false);
 				m1.setExtendedState(Frame.MAXIMIZED_BOTH);
 					

@@ -4,3 +4,5 @@ Cuartel General del  EjÃ©rcito de Tierra	Madrid	80000	132	1	1	1767	3
 Cuartel General del  EjÃ©rcito de Tierra	Madrid	80000	132	1	1	1767	4
 Cuartel General del  EjÃ©rcito de Tierra	Madrid	80000	132	1	1	1767	5
 Cuartel General del  EjÃ©rcito de Tierra	Madrid	80000	132	1	1	1767	6
+Cuartel General del  Ejercito de Tierra	Madrid	80000	132	1	1	1767	7
+Cuartel General del  Ejercito de Tierra	Madrid	80000	132	1	1	1767	8
