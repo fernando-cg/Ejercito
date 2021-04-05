@@ -468,7 +468,7 @@ public ArrayList<VehiculosTierra> actualizarvehitier(ArrayList<VehiculosTierra> 
 	return array ;
 }
 
-private void eliminarFila(int fila) {
+public void eliminarFila(int fila) {
 	
 	ArrayList<String> array = new ArrayList<String>() ;
 	String linea = null;

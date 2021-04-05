@@ -5,18 +5,19 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
+import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
 import escritura.Editor;
 
-
-
-
+import ejercito.* ;
+import escritura.Editor; 
 @SuppressWarnings({ "serial", "deprecation" })
 public class Marco extends JFrame {
 	
@@ -244,6 +245,37 @@ public class Marco extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
+				ArrayList<Armada>armadas=new ArrayList<Armada>();
+				ArrayList<Aire>aires=new ArrayList<Aire>();
+				ArrayList<Tierra>tierras=new ArrayList<Tierra>();
+				ArrayList<TropasArmada>tropasarmada=new ArrayList<TropasArmada>();
+				ArrayList<VehiculosArmada>vehiculosarmada=new ArrayList<VehiculosArmada>();
+				ArrayList<TropasAire>tropasaire=new ArrayList<TropasAire>();
+				ArrayList<VehiculosAire>vehiculosaire=new ArrayList<VehiculosAire>();
+				ArrayList<TropasTierra>Tropastierra=new ArrayList<TropasTierra>();
+				ArrayList<VehiculosTierra>vehiculostierra=new ArrayList<VehiculosTierra>();
+				
+				Editor airee = new Editor("datos\\Aire.txt") ; 
+				Editor armadae = new Editor("datos\\Armada.txt") ;
+				Editor tierrae = new Editor("datos\\Tierra.txt") ;
+				Editor tropasAiree = new Editor("datos\\TropasAire.txt") ;
+				Editor tropasArmadae = new Editor("datos\\TropasArmada.txt") ;
+				Editor tropasTierrae = new Editor("datos\\TropasTierra.txt") ;
+				Editor vehiculosAiree = new Editor("datos\\VehiculosAire.txt") ;
+				Editor vehiculosArmadae = new Editor("datos\\VehiculosArmada.txt") ;
+				Editor vehiculosTierrae = new Editor("datos\\VehiculosTierra.txt") ;
+				
+				armadas = armadae.actualizarar(armadas) ;
+				aires= airee.actualizarair(aires);
+				tierras= tierrae.actualizaratier(tierras);
+				tropasaire=tropasAiree.actualizartropaair(tropasaire);
+				tropasarmada=tropasArmadae.actualizartroparm(tropasarmada);
+				Tropastierra= tropasTierrae.actualizartropatier(Tropastierra);
+				vehiculosarmada= vehiculosArmadae.actualizarvehiarm(vehiculosarmada);
+				vehiculosaire= vehiculosAiree.actualizarvehiair(vehiculosaire);
+				vehiculostierra=vehiculosTierrae.actualizarvehitier(vehiculostierra);
+				
 				UIManager UI=new UIManager();
 			    UI.put("OptionPane.background", new Color(0, 62, 0));
 			    UI.put("Panel.background", new Color(0, 62, 0));
@@ -260,6 +292,622 @@ public class Marco extends JFrame {
 				Editor e1 = new Editor("datos\\Usuarios.txt") ;
 				
 				if(e1.usuario(user)&&e1.pass(pass)) {
+					
+					int seleccion= 3 ;
+					
+					do {
+						String opciones[] = {"Ejercito de tierra" , "Ejercito de aire" , "Armada", "Salir"} ;
+						seleccion =JOptionPane.showOptionDialog(null, "Seleccione una opción", "Administración", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,  new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), opciones, opciones[3]);
+						String opciones1[] = {"Bases" , "Tropas" , "Vehiculos", "Salir"} ;
+						String opciones2[] = {"Add" , "Eliminar" , "Salir"} ;
+						int seleccion1 ;
+						switch (seleccion) {
+						case 0:
+							do {
+								seleccion1 =JOptionPane.showOptionDialog(null, "Seleccione una opcion", "Ejercito de tierra", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,  new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), opciones1, opciones1[3]);
+								int seleccion2 ;
+								switch (seleccion1) {
+								//tierra
+									case 0:
+										
+										do {
+											seleccion2 =JOptionPane.showOptionDialog(null, "Seleccione una opcion", "Bases", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,  new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), opciones2, opciones2[2]);
+											
+											switch (seleccion2) {
+											
+												case 0:
+													
+													String nombrebase=(String)JOptionPane.showInputDialog(
+															null,"Introduzca el nombre de la base","Bases", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null);
+													
+													String sede=(String)JOptionPane.showInputDialog(
+															null,"Introduzca la sede","sede", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null);
+													
+													int numeroTropas=Integer.parseInt((String)JOptionPane.showInputDialog(
+															null,"Introduzca el numero de tropas","Bases", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null));
+													
+													int numNaves=Integer.parseInt((String)JOptionPane.showInputDialog(
+															null,"Introduzca el numero de Naves","Bases", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null));
+													
+													int dia=Integer.parseInt((String)JOptionPane.showInputDialog(
+															null,"Introduzca el dia de fundacion","Bases", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null));
+													
+													int mes=Integer.parseInt((String)JOptionPane.showInputDialog(
+															null,"Introduzca el mes de fundacion","Bases", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null));
+													
+													int annio=Integer.parseInt((String)JOptionPane.showInputDialog(
+															null,"Introduzca el annio de fundacion","Bases", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null));
+													
+													tierras.add(new Tierra(nombrebase,sede,numeroTropas, numNaves , dia,mes,annio)) ;
+													break;
+					
+												case 1:
+													
+													String[] bases = new String[tierras.size()];
+														for(int x = 0 ; x < tierras.size() ; x++) {
+															
+															
+															
+															String salida = (x+1)+ "->" + tierras.get(x).getNombreBase() ;
+															
+															bases[x] = salida ;
+													}
+														
+														JPanel panel2 = new JPanel(new GridBagLayout());
+														
+														JComboBox box2 = new JComboBox(bases);
+														
+														JOptionPane.showMessageDialog(null, box2, "Seleccione una base para eliminar" ,JOptionPane.QUESTION_MESSAGE);
+														
+														int resp2 = box2.getSelectedIndex() ;
+														tierras.remove(resp2) ;
+														tierrae.eliminarFila(resp2) ;
+													break;
+													
+												case 2:
+													
+													break;
+
+													
+											}
+										}while(seleccion2!=2) ;
+										break;
+		
+									case 1:
+										do {
+											seleccion2 =JOptionPane.showOptionDialog(null, "Seleccione una opcion", "Tropas", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,  new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), opciones2, opciones2[2]);
+											
+											switch (seleccion2) {
+											
+												case 0:
+													
+													String base=(String)JOptionPane.showInputDialog(
+															null,"Introduzca el nombre de la base a la que pertenece","Tropas", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null);
+													
+													String rango=(String)JOptionPane.showInputDialog(
+															null,"Introduzca el rango","Tropas", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null);
+													
+													int numeroTropas=Integer.parseInt((String)JOptionPane.showInputDialog(
+															null,"Introduzca la cantidad de esta tropa","Tropas", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null));
+													
+													Tropastierra.add(new TropasTierra(numeroTropas,rango,base)) ;
+													
+													break;
+					
+												case 1:
+													
+													String[] bases = new String[Tropastierra.size()];
+														for(int x = 0 ; x < Tropastierra.size() ; x++) {
+															
+															
+															
+															String salida = (x+1)+ "->" + Tropastierra.get(x).getRango() ;
+															
+															bases[x] = salida ;
+													}
+														
+														JPanel panel2 = new JPanel(new GridBagLayout());
+														
+														JComboBox box2 = new JComboBox(bases);
+														
+														JOptionPane.showMessageDialog(null, box2, "Seleccione un rango para eliminar" ,JOptionPane.QUESTION_MESSAGE);
+														
+														int resp2 = box2.getSelectedIndex() ;
+														Tropastierra.remove(resp2) ;
+														tropasTierrae.eliminarFila(resp2) ;
+													break;
+													
+												case 2:
+													
+													break;
+
+													
+											}
+										}while(seleccion2!=2) ;
+										
+										break;
+										
+									case 2:
+										
+										do {
+											seleccion2 =JOptionPane.showOptionDialog(null, "Seleccione una opcion", "Vehiculos", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,  new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), opciones2, opciones2[2]);
+											
+											switch (seleccion2) {
+											
+												case 0:
+													
+													String base=(String)JOptionPane.showInputDialog(
+															null,"Introduzca el nombre y modelo del vehículo","Vehículo", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null);
+													
+													String rango=(String)JOptionPane.showInputDialog(
+															null,"Introduzca una descripcion del vehiculo","Vehiculo", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null);
+													
+													int numeroTropas=Integer.parseInt((String)JOptionPane.showInputDialog(
+															null,"Introduzca la cantidad de vehiculos","Vehiculo", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null));
+													
+													vehiculostierra.add(new VehiculosTierra(numeroTropas,base,rango)) ;
+													
+													break;
+					
+												case 1:
+													
+													String[] bases = new String[vehiculostierra.size()];
+														for(int x = 0 ; x < vehiculostierra.size() ; x++) {
+															
+															
+															
+															String salida = (x+1)+ "->" + vehiculostierra.get(x).getTipo() ;
+															
+															bases[x] = salida ;
+													}
+														
+														JPanel panel2 = new JPanel(new GridBagLayout());
+														
+														JComboBox box2 = new JComboBox(bases);
+														
+														JOptionPane.showMessageDialog(null, box2, "Seleccione un vehiculo" ,JOptionPane.QUESTION_MESSAGE);
+														
+														int resp2 = box2.getSelectedIndex() ;
+														vehiculostierra.remove(resp2) ;
+														vehiculosTierrae.eliminarFila(resp2) ;
+													break;
+													
+												case 2:
+													
+													break;
+
+													
+											}
+										}while(seleccion2!=2) ;
+										
+										break;
+										
+									case 3:
+										
+										break;
+										
+								}
+							}while(seleccion1 != 3) ;
+							break;
+						case 1:
+							do {
+								seleccion1 =JOptionPane.showOptionDialog(null, "Seleccione una opcion", "Ejercito de aire", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,  new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), opciones1, opciones1[3]);
+								int seleccion2 ;
+								switch (seleccion1) {
+								//Aire
+									case 0:
+										
+										do {
+											seleccion2 =JOptionPane.showOptionDialog(null, "Seleccione una opcion", "Bases", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,  new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), opciones2, opciones2[2]);
+											
+											switch (seleccion2) {
+											
+												case 0:
+													
+													String nombrebase=(String)JOptionPane.showInputDialog(
+															null,"Introduzca el nombre de la base","Bases", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null);
+													
+													String sede=(String)JOptionPane.showInputDialog(
+															null,"Introduzca la sede","sede", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null);
+													
+													int numeroTropas=Integer.parseInt((String)JOptionPane.showInputDialog(
+															null,"Introduzca el numero de tropas","Bases", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null));
+													
+													int numNaves=Integer.parseInt((String)JOptionPane.showInputDialog(
+															null,"Introduzca el numero de Naves","Bases", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null));
+													
+													int dia=Integer.parseInt((String)JOptionPane.showInputDialog(
+															null,"Introduzca el dia de fundacion","Bases", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null));
+													
+													int mes=Integer.parseInt((String)JOptionPane.showInputDialog(
+															null,"Introduzca el mes de fundacion","Bases", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null));
+													
+													int annio=Integer.parseInt((String)JOptionPane.showInputDialog(
+															null,"Introduzca el annio de fundacion","Bases", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null));
+													
+													aires.add(new Aire(nombrebase,sede,numeroTropas, numNaves , dia,mes,annio)) ;
+													break;
+					
+												case 1:
+													
+													String[] bases = new String[aires.size()];
+														for(int x = 0 ; x < aires.size() ; x++) {
+															
+															
+															
+															String salida = (x+1)+ "->" + aires.get(x).getNombreBase() ;
+															
+															bases[x] = salida ;
+													}
+														
+														JPanel panel2 = new JPanel(new GridBagLayout());
+														
+														JComboBox box2 = new JComboBox(bases);
+														
+														JOptionPane.showMessageDialog(null, box2, "Seleccione una base para eliminar" ,JOptionPane.QUESTION_MESSAGE);
+														
+														int resp2 = box2.getSelectedIndex() ;
+														aires.remove(resp2) ;
+														airee.eliminarFila(resp2) ;
+													break;
+													
+												case 2:
+													
+													break;
+
+													
+											}
+										}while(seleccion2!=2) ;
+										break;
+		
+									case 1:
+										do {
+											seleccion2 =JOptionPane.showOptionDialog(null, "Seleccione una opcion", "Tropas", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,  new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), opciones2, opciones2[2]);
+											
+											switch (seleccion2) {
+											
+												case 0:
+													
+													String base=(String)JOptionPane.showInputDialog(
+															null,"Introduzca el nombre de la base a la que pertenece","Tropas", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null);
+													
+													String rango=(String)JOptionPane.showInputDialog(
+															null,"Introduzca el rango","Tropas", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null);
+													
+													int numeroTropas=Integer.parseInt((String)JOptionPane.showInputDialog(
+															null,"Introduzca la cantidad de esta tropa","Tropas", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null));
+													
+													tropasaire.add(new TropasAire(numeroTropas,rango,base)) ;
+													
+													break;
+					
+												case 1:
+													
+													String[] bases = new String[tropasaire.size()];
+														for(int x = 0 ; x < tropasaire.size() ; x++) {
+															
+															
+															
+															String salida = (x+1)+ "->" + tropasaire.get(x).getRango() ;
+															
+															bases[x] = salida ;
+													}
+														
+														JPanel panel2 = new JPanel(new GridBagLayout());
+														
+														JComboBox box2 = new JComboBox(bases);
+														
+														JOptionPane.showMessageDialog(null, box2, "Seleccione un rango para eliminar" ,JOptionPane.QUESTION_MESSAGE);
+														
+														int resp2 = box2.getSelectedIndex() ;
+														tropasaire.remove(resp2) ;
+														tropasAiree.eliminarFila(resp2) ;
+													break;
+													
+												case 2:
+													
+													break;
+
+													
+											}
+										}while(seleccion2!=2) ;
+										
+										break;
+										
+									case 2:
+										
+										do {
+											seleccion2 =JOptionPane.showOptionDialog(null, "Seleccione una opcion", "Vehiculos", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,  new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), opciones2, opciones2[2]);
+											
+											switch (seleccion2) {
+											
+												case 0:
+													
+													String base=(String)JOptionPane.showInputDialog(
+															null,"Introduzca el nombre y modelo del vehículo","Vehículo", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null);
+													
+													String rango=(String)JOptionPane.showInputDialog(
+															null,"Introduzca una descripcion del vehiculo","Vehiculo", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null);
+													
+													int numeroTropas=Integer.parseInt((String)JOptionPane.showInputDialog(
+															null,"Introduzca la cantidad de vehiculos","Vehiculo", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null));
+													
+													vehiculosaire.add(new VehiculosAire(numeroTropas,base,rango)) ;
+													
+													break;
+					
+												case 1:
+													
+													String[] bases = new String[vehiculosaire.size()];
+														for(int x = 0 ; x < vehiculosaire.size() ; x++) {
+															
+															
+															
+															String salida = (x+1)+ "->" + vehiculosaire.get(x).getTipo() ;
+															
+															bases[x] = salida ;
+													}
+														
+														JPanel panel2 = new JPanel(new GridBagLayout());
+														
+														JComboBox box2 = new JComboBox(bases);
+														
+														JOptionPane.showMessageDialog(null, box2, "Seleccione un vehiculo" ,JOptionPane.QUESTION_MESSAGE);
+														
+														int resp2 = box2.getSelectedIndex() ;
+														vehiculosaire.remove(resp2) ;
+														vehiculosAiree.eliminarFila(resp2) ;
+													break;
+													
+												case 2:
+													
+													break;
+
+													
+											}
+										}while(seleccion2!=2) ;
+										
+										break;
+										
+									case 3:
+										
+										break;
+										
+								}
+							}while(seleccion1 != 3) ;
+							
+							break;
+						case 2:
+							do {
+								seleccion1 =JOptionPane.showOptionDialog(null, "Seleccione una opcion", "Armada", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,  new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), opciones1, opciones1[3]);
+								int seleccion2 ;
+								switch (seleccion1) {
+								//Armada
+									case 0:
+										
+										do {
+											seleccion2 =JOptionPane.showOptionDialog(null, "Seleccione una opcion", "Bases", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,  new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), opciones2, opciones2[2]);
+											
+											switch (seleccion2) {
+											
+												case 0:
+													
+													String nombrebase=(String)JOptionPane.showInputDialog(
+															null,"Introduzca el nombre de la base","Bases", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null);
+													
+													String sede=(String)JOptionPane.showInputDialog(
+															null,"Introduzca la sede","sede", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null);
+													
+													int numeroTropas=Integer.parseInt((String)JOptionPane.showInputDialog(
+															null,"Introduzca el numero de tropas","Bases", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null));
+													
+													int numNaves=Integer.parseInt((String)JOptionPane.showInputDialog(
+															null,"Introduzca el numero de Naves","Bases", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null));
+													
+													int dia=Integer.parseInt((String)JOptionPane.showInputDialog(
+															null,"Introduzca el dia de fundacion","Bases", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null));
+													
+													int mes=Integer.parseInt((String)JOptionPane.showInputDialog(
+															null,"Introduzca el mes de fundacion","Bases", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null));
+													
+													int annio=Integer.parseInt((String)JOptionPane.showInputDialog(
+															null,"Introduzca el annio de fundacion","Bases", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null));
+													
+													armadas.add(new Armada(nombrebase,sede,numeroTropas, numNaves , dia,mes,annio)) ;
+													break;
+					
+												case 1:
+													
+													String[] bases = new String[armadas.size()];
+														for(int x = 0 ; x < armadas.size() ; x++) {
+															
+															
+															
+															String salida = (x+1)+ "->" + armadas.get(x).getNombreBase() ;
+															
+															bases[x] = salida ;
+													}
+														
+														JPanel panel2 = new JPanel(new GridBagLayout());
+														
+														JComboBox box2 = new JComboBox(bases);
+														
+														JOptionPane.showMessageDialog(null, box2, "Seleccione una base para eliminar" ,JOptionPane.QUESTION_MESSAGE);
+														
+														int resp2 = box2.getSelectedIndex() ;
+														armadas.remove(resp2) ;
+														armadae.eliminarFila(resp2) ;
+													break;
+													
+												case 2:
+													
+													break;
+
+													
+											}
+										}while(seleccion2!=2) ;
+										break;
+		
+									case 1:
+										do {
+											seleccion2 =JOptionPane.showOptionDialog(null, "Seleccione una opcion", "Tropas", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,  new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), opciones2, opciones2[2]);
+											
+											switch (seleccion2) {
+											
+												case 0:
+													
+													String base=(String)JOptionPane.showInputDialog(
+															null,"Introduzca el nombre de la base a la que pertenece","Tropas", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null);
+													
+													String rango=(String)JOptionPane.showInputDialog(
+															null,"Introduzca el rango","Tropas", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null);
+													
+													int numeroTropas=Integer.parseInt((String)JOptionPane.showInputDialog(
+															null,"Introduzca la cantidad de esta tropa","Tropas", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null));
+													
+													tropasarmada.add(new TropasArmada(numeroTropas,rango,base)) ;
+													
+													break;
+					
+												case 1:
+													
+													String[] bases = new String[tropasarmada.size()];
+														for(int x = 0 ; x < tropasarmada.size() ; x++) {
+															
+															
+															
+															String salida = (x+1)+ "->" + tropasarmada.get(x).getRango() ;
+															
+															bases[x] = salida ;
+													}
+														
+														JPanel panel2 = new JPanel(new GridBagLayout());
+														
+														JComboBox box2 = new JComboBox(bases);
+														
+														JOptionPane.showMessageDialog(null, box2, "Seleccione un rango para eliminar" ,JOptionPane.QUESTION_MESSAGE);
+														
+														int resp2 = box2.getSelectedIndex() ;
+														tropasarmada.remove(resp2) ;
+														tropasArmadae.eliminarFila(resp2) ;
+													break;
+													
+												case 2:
+													
+													break;
+
+													
+											}
+										}while(seleccion2!=2) ;
+										
+										break;
+										
+									case 2:
+										
+										do {
+											seleccion2 =JOptionPane.showOptionDialog(null, "Seleccione una opcion", "Vehiculos", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,  new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), opciones2, opciones2[2]);
+											
+											switch (seleccion2) {
+											
+												case 0:
+													
+													String base=(String)JOptionPane.showInputDialog(
+															null,"Introduzca el nombre y modelo del vehículo","Vehículo", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null);
+													
+													String rango=(String)JOptionPane.showInputDialog(
+															null,"Introduzca una descripcion del vehiculo","Vehiculo", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null);
+													
+													int numeroTropas=Integer.parseInt((String)JOptionPane.showInputDialog(
+															null,"Introduzca la cantidad de vehiculos","Vehiculo", JOptionPane.INFORMATION_MESSAGE,
+													        new ImageIcon(Test.class.getResource("/Imagenes/soldado.png")), null, null));
+													
+													vehiculosarmada.add(new VehiculosArmada(numeroTropas,base,rango)) ;
+													
+													break;
+					
+												case 1:
+													
+													String[] bases = new String[vehiculosarmada.size()];
+														for(int x = 0 ; x < vehiculosarmada.size() ; x++) {
+															
+															
+															
+															String salida = (x+1)+ "->" + vehiculosarmada.get(x).getTipo() ;
+															
+															bases[x] = salida ;
+													}
+														
+														JPanel panel2 = new JPanel(new GridBagLayout());
+														
+														JComboBox box2 = new JComboBox(bases);
+														
+														JOptionPane.showMessageDialog(null, box2, "Seleccione un vehiculo" ,JOptionPane.QUESTION_MESSAGE);
+														
+														int resp2 = box2.getSelectedIndex() ;
+														vehiculosarmada.remove(resp2) ;
+														vehiculosArmadae.eliminarFila(resp2) ;
+													break;
+													
+												case 2:
+													
+													break;
+
+													
+											}
+										}while(seleccion2!=2) ;
+										
+										break;
+										
+									case 3:
+										
+										break;
+										
+								}
+							}while(seleccion1 != 3) ;
+							
+
+							break;
+	
+						}
+					}while(seleccion != 3) ;
 					
 				}
 				else {
