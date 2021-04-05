@@ -8,6 +8,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,6 +23,7 @@ import ejercito.TropasAire;
 import ejercito.TropasArmada;
 import ejercito.VehiculosAire;
 import ejercito.VehiculosArmada;
+import escritura.Editor;
 
 @SuppressWarnings("serial")
 public class DB_Armada extends JFrame{
@@ -57,17 +59,38 @@ public class DB_Armada extends JFrame{
 	}
 	private String AnnadirDatosArmadaBase() {
 		//Objetos Creados
-		Armada arm1=new Armada("Comandancia Naval de Sevilla","", 20838, 203, 17, 2, 1915);
-		return arm1.toString();
+		ArrayList<Armada>armadas=new ArrayList<Armada>();
+		Editor armadae = new Editor("datos\\Armada.txt") ;
+		armadas = armadae.actualizarar(armadas) ;
+		
+		String salida = "" ;
+		for(int x = 0 ; x < armadas.size() ; x++) {
+			salida = armadas.get(x).toString() ;
+		}
+		return salida;
 		
 	}
 	private String AnnadirDatosTropas() {
-		TropasArmada ta1=new TropasArmada(8400, "Oficiales", "Comandancia Naval de Sevilla");
-		return ta1.toString();
+		ArrayList<TropasArmada>tropasarmada=new ArrayList<TropasArmada>();
+		Editor tropasArmadae = new Editor("datos\\TropasArmada.txt") ;
+		tropasarmada=tropasArmadae.actualizartroparm(tropasarmada);
+		
+		String salida = "" ;
+		for(int x = 0 ; x < tropasarmada.size() ; x++) {
+			salida = tropasarmada.get(x).toString() ;
+		}
+		return salida;
 	}
 	private String AnnadirVehiculos() {
-		VehiculosArmada a1= new VehiculosArmada(5, "Fragatas","La fragata es un buque de guerra concebido para actuar en misiones de guerra naval y antisubmarina, aunque puede disponer de sistemas para actuar como buque de apoyo en otras misiones. ");
-		return a1.toString();
+		ArrayList<VehiculosArmada>vehiculosarmada=new ArrayList<VehiculosArmada>();
+		Editor vehiculosArmadae = new Editor("datos\\VehiculosArmada.txt") ;
+		vehiculosarmada= vehiculosArmadae.actualizarvehiarm(vehiculosarmada);
+		
+		String salida = "" ;
+		for(int x = 0 ; x < vehiculosarmada.size() ; x++) {
+			salida = vehiculosarmada.get(x).toString() ;
+		}
+		return salida;
 	}
 	private void iniciarComponentes() {
 		colocarPanel();
@@ -97,13 +120,7 @@ public class DB_Armada extends JFrame{
 	}
 private void colocarElementos() {
 	//Objetos Creados del cuartel
-			Aire air1=new Aire("Cuartel General del Ejército del Aire", "Madrid", 20900, 412, 28,2, 1913);
-			air1.getFechaFundacion();
-			air1.getNombreBase();
-			air1.getNumTropas();
-			air1.getNumNaves();
-			air1.getPresupuesto();
-			air1.getSede();
+
 	//Objetos creados de la Tropa
 			
 	//Objetos creados de los vehiculos

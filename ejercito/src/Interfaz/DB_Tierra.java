@@ -8,6 +8,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,11 +18,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import ejercito.Aire;
+import ejercito.Armada;
 import ejercito.Tierra;
 import ejercito.TropasAire;
+import ejercito.TropasArmada;
 import ejercito.TropasTierra;
 import ejercito.VehiculosAire;
+import ejercito.VehiculosArmada;
 import ejercito.VehiculosTierra;
+import escritura.Editor;
 
 @SuppressWarnings("serial")
 public class DB_Tierra extends JFrame{
@@ -57,17 +62,38 @@ public class DB_Tierra extends JFrame{
 	}
 	private String AnnadirDatosTierraBase() {
 		//Objetos Creados
-		Tierra tier1=new Tierra("Cuartel General del  Ejercito de Tierra","Madrid",80000,132,1,1,1767);
-		return tier1.toString();
+		ArrayList<Tierra>tierras=new ArrayList<Tierra>();
+		Editor tierrae = new Editor("datos\\Tierra.txt") ;
+		tierras= tierrae.actualizaratier(tierras);
+		
+		String salida = "" ;
+		for(int x = 0 ; x < tierras.size() ; x++) {
+			salida = tierras.get(x).toString() ;
+		}
+		return salida;
 		
 	}
 	private String AnnadirDatosTropas() {
-		TropasTierra tt1=new TropasTierra(10000, "Oficiales", "Cuartel General	del Ejercito de Tierra");
-		return tt1.toString();
+		ArrayList<TropasTierra>tropasTierra=new ArrayList<TropasTierra>();
+		Editor tierrae = new Editor("datos\\TropasTierra.txt") ;
+		tropasTierra= tierrae.actualizartropatier(tropasTierra) ;
+		
+		String salida = "" ;
+		for(int x = 0 ; x < tropasTierra.size() ; x++) {
+			salida = tropasTierra.get(x).toString() ;
+		}
+		return salida;
 	}
 	private String AnnadirVehiculos() {
-		VehiculosTierra vt1=new VehiculosTierra(219, "Leopardo 2E","El Leopardo 2E es una variante del carro de combate alemán Leopard 2A6 adaptado a los requerimientos del Ejército de Tierra de España, que lo adquirió como parte del programa de modernización de armamento llamado Programa Coraza. ");
-		return vt1.toString();
+		ArrayList<VehiculosTierra>tropasTierra=new ArrayList<VehiculosTierra>();
+		Editor tierrae = new Editor("datos\\VehiculosTierra.txt") ;
+		tropasTierra= tierrae.actualizarvehitier(tropasTierra) ;
+		
+		String salida = "" ;
+		for(int x = 0 ; x < tropasTierra.size() ; x++) {
+			salida = tropasTierra.get(x).toString() ;
+		}
+		return salida;
 	}
 	private void iniciarComponentes() {
 		colocarPanel();
@@ -97,13 +123,6 @@ public class DB_Tierra extends JFrame{
 	}
 private void colocarElementos() {
 	//Objetos Creados del cuartel
-	Tierra tier1=new Tierra("Cuartel General del  Ejercito de Tierra","Madrid",80000,132,1,1,1767);
-			tier1.getFechaFundacion();
-			tier1.getNombreBase();
-			tier1.getNumTropas();
-			tier1.getNumNaves();
-			tier1.getPresupuesto();
-			tier1.getSede();
 	//Objetos creados de la Tropa
 			
 	//Objetos creados de los vehiculos

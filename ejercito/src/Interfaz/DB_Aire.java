@@ -8,6 +8,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,8 +18,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import ejercito.Aire;
+import ejercito.Tierra;
 import ejercito.TropasAire;
+import ejercito.TropasTierra;
 import ejercito.VehiculosAire;
+import ejercito.VehiculosTierra;
+import escritura.Editor;
 
 @SuppressWarnings("serial")
 public class DB_Aire extends JFrame{
@@ -54,17 +59,38 @@ public class DB_Aire extends JFrame{
 	}
 	private String AnnadirDatosAireBase() {
 		//Objetos Creados
-		Aire air1=new Aire("Cuartel General del Ejército del Aire", "Madrid", 20900, 412, 28,2, 1913);
-		return air1.toString();
+		ArrayList<Aire>tierras=new ArrayList<Aire>();
+		Editor tierrae = new Editor("datos\\Aire.txt") ;
+		tierras= tierrae.actualizarair(tierras);
+		
+		String salida = "" ;
+		for(int x = 0 ; x < tierras.size() ; x++) {
+			salida = tierras.get(x).toString() ;
+		}
+		return salida;
 		
 	}
 	private String AnnadirDatosTropas() {
-		TropasAire tair1= new TropasAire(9500, "Oficiales", "Base Aerea de Moron");
-		return tair1.toString();
+		ArrayList<TropasAire>tropasTierra=new ArrayList<TropasAire>();
+		Editor tierrae = new Editor("datos\\TropasAire.txt") ;
+		tropasTierra= tierrae.actualizartropaair(tropasTierra) ;
+		
+		String salida = "" ;
+		for(int x = 0 ; x < tropasTierra.size() ; x++) {
+			salida = tropasTierra.get(x).toString() ;
+		}
+		return salida;
 	}
 	private String AnnadirVehiculos() {
-		VehiculosAire va1=new VehiculosAire(73, "Eurofighter Typhoon","El Eurofighter Typhoon es un caza polivalente, bimotor y de gran maniobrabilidad, diseñado y construido por el consorcio de empresas europeas Eurofighter GmbH creado en 1983 y compuesto por las compañías Airbus, BAE Systems y Alenia Aeronautica.​");
-		return va1.toString();
+		ArrayList<VehiculosAire>tropasTierra=new ArrayList<VehiculosAire>();
+		Editor tierrae = new Editor("datos\\VehiculosAire.txt") ;
+		tropasTierra= tierrae.actualizarvehiair(tropasTierra) ;
+		
+		String salida = "" ;
+		for(int x = 0 ; x < tropasTierra.size() ; x++) {
+			salida = tropasTierra.get(x).toString() ;
+		}
+		return salida;
 	}
 	private void iniciarComponentes() {
 		colocarPanel();
@@ -94,13 +120,7 @@ public class DB_Aire extends JFrame{
 	}
 private void colocarElementos() {
 	//Objetos Creados del cuartel
-			Aire air1=new Aire("Cuartel General del Ejército del Aire", "Madrid", 20900, 412, 28,2, 1913);
-			air1.getFechaFundacion();
-			air1.getNombreBase();
-			air1.getNumTropas();
-			air1.getNumNaves();
-			air1.getPresupuesto();
-			air1.getSede();
+
 	//Objetos creados de la Tropa
 			
 	//Objetos creados de los vehiculos
